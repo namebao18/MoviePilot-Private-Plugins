@@ -1,21 +1,16 @@
 {
-  "name": "MoviePilot-Private-Plugins",
-  "title": "私人插件仓库",
-  "description": "仅供个人使用的插件仓库",
-  "plugins": [
-    {
-      "name": "autosubv2",
-      "title": "AutoSubv2",
-      "description": "私人修改版本",
-      "version": "1.0.0",
-      "author": "namebao18"
-    },
-    {
-      "name": "dynamicwechat",
-      "title": "DynamicWeChat",
-      "description": "私人修改版本",
-      "version": "1.0.0",
-      "author": "namebao18"
-    }
-  ]
+  "AutoSubv2": {
+    "name": "AI字幕自动生成(v2) - 私人版",
+    "description": "强制日语识别的私人修改版本",
+    "version": "2.3.1",
+    "author": "namebao18",
+    "level": 1
+  },
+  "DynamicWeChat": {
+    "name": "企业微信可信IP自动更新 - 私人版",
+    "description": "使用CookieCloud的私人修改版本",
+    "version": "1.0.1",
+    "author": "namebao18",
+    "level": 1
+  }
 }

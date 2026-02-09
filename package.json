@@ -1,14 +1,21 @@
 {
-  "autosubv2": {
-    "name": "AutoSubv2",
-    "version": "2.3.0",
-    "author": "namebao18",
-    "description": "私人版本：强制日语识别"
-  },
-  "dynamicwechat": {
-    "name": "DynamicWeChat",
-    "version": "1.0.0",
-    "author": "namebao18",
-    "description": "私人版本：自动信任IP"
-  }
+  "name": "MoviePilot-Private-Plugins",
+  "title": "私人插件仓库",
+  "description": "仅供个人使用的插件仓库",
+  "plugins": [
+    {
+      "name": "autosubv2",
+      "title": "AutoSubv2",
+      "description": "私人修改版本",
+      "version": "1.0.0",
+      "author": "namebao18"
+    },
+    {
+      "name": "dynamicwechat",
+      "title": "DynamicWeChat",
+      "description": "私人修改版本",
+      "version": "1.0.0",
+      "author": "namebao18"
+    }
+  ]
 }

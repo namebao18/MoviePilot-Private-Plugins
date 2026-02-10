@@ -7,12 +7,6 @@
     "author": "TimoYoung",
     "level": 1,
     "v2": true,
-    "labels": "字幕",
-    "history": {
-      "v2.5": "Pro独立版，独立于原autosubv2插件",
-      "v2.2": "fix",
-      "v2.1": "...",
-      "v2.0": "..."
-    }
+    "labels": "字幕"
   }
 }

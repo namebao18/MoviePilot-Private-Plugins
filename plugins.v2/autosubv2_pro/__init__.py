@@ -1707,3 +1707,4 @@ class AutoSubv2Pro(_PluginBase):
         self._running = False
         self._event.clear()
         logger.info(f"自动字幕生成服务已停止")
+plugin = AutoSubv2Pro

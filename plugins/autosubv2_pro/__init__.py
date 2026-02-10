@@ -22,8 +22,8 @@ from app.core.event import eventmanager, Event as MPEvent
 from app.schemas import TransferInfo
 from app.schemas.types import NotificationType, EventType
 from app.log import logger
-from app.plugins import _PluginBase
 from app.utils.system import SystemUtils
+from app.plugins import _PluginBase
 from .ffmpeg import Ffmpeg
 from .translate.openai_translate import OpenAi
 
@@ -107,6 +107,9 @@ class AutoSubv2Pro(_PluginBase):
     _faster_whisper_model = None
 
     def init_plugin(self, config=None):
+        # 插件加载成功日志
+        logger.info("AutoSubv2Pro 插件已成功加载")
+        
         # 如果没有配置信息， 则不处理
         if not config:
             return

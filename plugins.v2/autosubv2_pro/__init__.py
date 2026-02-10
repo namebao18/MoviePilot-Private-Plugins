@@ -24,8 +24,8 @@ from app.schemas.types import NotificationType, EventType
 from app.log import logger
 from app.plugins import _PluginBase
 from app.utils.system import SystemUtils
-from plugins.autosubv2_pro.ffmpeg import Ffmpeg
-from plugins.autosubv2_pro.translate.openai_translate import OpenAi
+from .ffmpeg import Ffmpeg
+from .translate.openai_translate import OpenAi
 
 
 class UserInterruptException(Exception):
@@ -144,7 +144,7 @@ class AutoSubv2Pro(_PluginBase):
                 if not openai_key_str:
                     logger.error(f"请先在ChatGPT插件中维护openai_key")
                     return
-                openai_key = [key.strip() for key in openai_str.split(',') if key.strip()][0]
+                openai_key = [key.strip() for key in openai_key_str.split(',') if key.strip()][0]
             else:
                 openai_key = config.get('openai_key')
                 if not openai_key:
@@ -409,7 +409,7 @@ class AutoSubv2Pro(_PluginBase):
             model = WhisperModel(
                 download_model(self._faster_whisper_model, local_files_only=False, cache_dir=cache_dir),
                 device="cpu", compute_type="int8", cpu_threads=psutil.cpu_count(logical=False))
-            
+
             try:
                 segments, info = model.transcribe(audio_file,
                                                   language=lang if lang != 'auto' else None,
@@ -495,7 +495,7 @@ class AutoSubv2Pro(_PluginBase):
         if not ret:
             logger.info(f"字幕源偏好：{self._translate_preference} 获取音轨元数据失败")
             return False, None, None
-        
+
         # 如果开启了自动语言检测，直接设置为auto，跳过metadata的语言信息
         if self._auto_detect_language:
             logger.info("已开启自动语言检测，将使用whisper模型自动识别语言")
@@ -879,13 +879,13 @@ class AutoSubv2Pro(_PluginBase):
             logger.info(f"英文字幕合并：合并前字幕数: {len(subs)},合并后字幕数: {len(valid_subs)}")
         else:
             valid_subs = subs
-        
+
         if not valid_subs:
             logger.warning("字幕文件为空或没有有效的字幕条目，跳过翻译")
             # 创建一个空的字幕文件
             self.__save_srt(dest_subtitle, [])
             return
-            
+
         self._stats['total'] = len(valid_subs)
         processed = []
         current_batch = []
@@ -902,9 +902,9 @@ class AutoSubv2Pro(_PluginBase):
             processed += self.__process_items(valid_subs, current_batch)
 
         self.__save_srt(dest_subtitle, processed)
-        
+
         success_rate = (self._stats['batch_success'] / self._stats['total'] * 100) if self._stats['total'] > 0 else 0.0
-        
+
         logger.info(f"""
     翻译完成！
     总处理条目: {self._stats['total']}
@@ -1707,4 +1707,6 @@ class AutoSubv2Pro(_PluginBase):
         self._running = False
         self._event.clear()
         logger.info(f"自动字幕生成服务已停止")
+
+
 plugin = AutoSubv2Pro
